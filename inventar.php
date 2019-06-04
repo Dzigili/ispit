@@ -1,29 +1,26 @@
+<?php
+session_start();
+if(!isset($_SESSION['korisnik_id'])) {
+    header('Location: index.php');
+    die();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Inventar</title>
-</head>
-<style>
-    form {
-        width: 50%;
-        min-width: 300px;
-        border: solid 2px #999;
-        padding: 2em;
-        margin: auto;
-    }
-    input {
-        padding: 1em;
-        width: 100%;
-        display: block;
-        box-sizing: border-box;
-        font-size: 16px;
-    }
-</style>
+</head>   
 <body>
-    <form method="POST" action="logika/napravi_inventar.php">
+    <p>Dobrodosao</p>
+    <a href="logika/logout.php">Odjavi se</a><br>
+    <a href="./promena_lozinke.php">Promeni lozinku</a><br>
+
+    <form method="POST" action="logika/napravi_inventar.php" 
+            enctype="multipart/form-data">
         <input type="text" name="naziv_predmeta"
             placeholder="Unesite naziv predmeta"><br>
         <input type="text" name="opis_predmeta"

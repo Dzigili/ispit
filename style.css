@@ -1,0 +1,38 @@
+form {
+    width: 50%;
+    min-width: 300px;
+    border: solid 2px #999;
+    padding: 2em;
+    margin: 2em auto;
+}
+input {
+    padding: 1em;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+a {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #777;
+    float: left;
+    display: block;
+    width: 100%;
+}
+a:hover {
+    color: #000;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+}
+table, tr, td {
+    font-size: 18px;
+    margin: auto;
+    border: solid 1px #000;
+    border-collapse: collapse;
+}
+table td {
+    padding: 0.3em 0.5em;
+}

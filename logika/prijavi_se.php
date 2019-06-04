@@ -1,18 +1,30 @@
 <?php
-session_start();
+if(!isset($_POST['username'])) {
+	header('Location: ../index.php');
+	die();
+}
 
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$password = hash(sha512, $password);
+$password = hash('sha512', $password);
 
 require_once __DIR__ . '/../tabele/Korisnik.php';
-$ulogovanKorisnik = Korisnik::login($username, $password);
+require_once __DIR__ . '/../tabele/Uloga.php';
+$korisnik = Korisnik::login($username, $password);
+$uloga = Uloga::getByName('administrator');
 
-if ($ulogovanKorisnik) {
-	$_SESSION['ulogovanKorisnik'] = true;
-	header('Location: ../inventar.php');
+if ($korisnik !== null) {
+	if($korisnik->uloga_id === $uloga->id && isset($_POST['admin_login'])) {
+		session_start();
+		$_SESSION['korisnik_admin_id'] = $korisnik_id;
+		header('Location: ../admin.php');
+	} else {
+		session_start();
+		$_SESSION['korisnik_id'] = $korisnik->id;
+		header('Location: ../inventar.php');
+	}
 } else {
-	header('Location: ../error.php');
+	header('Location: ../index.php?error=login');
 }
 

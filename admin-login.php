@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(isset($_SESSION['korisnik_id'])) {
-    header('Location: inventar.php');
+if(isset($_SESSION['korisnik_admin_id'])) {
+    header('Location: ../admin.php');
     die();
 }
 ?>
@@ -12,7 +12,7 @@ if(isset($_SESSION['korisnik_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Login</title>
+    <title>Admin Login</title>
 </head>
 <body>
     <form method="POST" action="./logika/prijavi_se.php">
@@ -20,11 +20,10 @@ if(isset($_SESSION['korisnik_id'])) {
             placeholder="Unesite username"><br>
         <input type="password" name="password"
             placeholder="Unesite password"><br>
+        <input type="hidden" name="admin_login" value="true">
         <input type="checkbox" name="">Zapamti me<br>
         <input type="submit" value="Prijavi se"><br>
-        <?php if(isset($_GET['error'])): ?>
-            <p id="error">Pogresno korisnicko ime/lozinka</p>
-        <?php endif ?>
+        <p id="error"></p>
     </form>
 </body>
 </html>

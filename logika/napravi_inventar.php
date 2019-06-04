@@ -1,5 +1,6 @@
 <?php
-require_once '../includes/Upload.php';
+
+require_once __DIR__ . '../includes/Upload.php';
 
 $naziv_predmeta = $_POST['naziv_predmeta'];
 $opis_predmeta = $_POST['opis_predmeta'];

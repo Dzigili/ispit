@@ -4,24 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Registracija</title>
 </head>
-<style>
-    form {
-        width: 50%;
-        min-width: 300px;
-        border: solid 2px #999;
-        padding: 2em;
-        margin: auto;
-    }
-    input {
-        padding: 1em;
-        width: 100%;
-        display: block;
-        box-sizing: border-box;
-        font-size: 16px;
-    }
-</style>
 <body>
     <form method="POST" action="logika/registruj_se.php">
         <input type="text" name="username"
@@ -37,9 +22,9 @@
         <input type="tel" name="telefon"
             placeholder="Unesite broj telefona"><br>
         <input type="submit" value="Registruj se"><br>
-        <?php if(isset($_GET['error'])) { ?>
-            <p id="error">Vec postoji korisnik sa tim korisnickim imenom ili e-mailom.</p>  
-        <?php } ?>
+        <?php if(isset($_GET['error'])): ?>
+            <p id="error">Vec postoji korisnik sa tim korisnickim imenom ili e-mailom.</p>
+        <?php endif ?>
     </form>
 </body>
 </html>

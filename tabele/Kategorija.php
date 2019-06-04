@@ -19,4 +19,20 @@ class Kategorija extends Tabela {
  		}
  		return $db->lastInsertId();
 	}
+
+	public static function getAll() {
+		$db = Database::getInstance();
+
+		$query = 'SELECT * FROM kategorije';
+
+		return $db->select('Kategorija', $query);
+	}
+
+	public static function obrisi($id) {
+		$db = Database::getInstance();
+		$query = 'DELETE FROM kategorije WHERE id = :id';
+		$params = [':id' => $id];
+
+		$db->delete($query, $params);
+	}
 }

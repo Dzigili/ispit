@@ -38,18 +38,64 @@ class Korisnik extends Tabela {
 		$db = Database::getInstance();
 
 		$query = 'SELECT * FROM korisnici ' .
-			'WHERE username = :u and password = :p ';
+			'WHERE username = :u AND password = :p ';
 
 		$params = [
 			':u' => $username,
 			':p' => $password
 		];
-		$korisinik = $db->select('Korisnik', $query, $params);
-		if (empty($korisinik)) {
-			return false;
+		$korisinici = $db->select('Korisnik', $query, $params);
+		foreach ($korisinici as $korisnik) {
+			return $korisnik;
 		}
+		return null;
+	}
 
-		return true;
+	public static function changePassword($username, $novi_password) {
+		$db = Database::getInstance();
 
-	} 
+		$query = 'UPDATE korisnici SET password = :p WHERE username = :u';
+
+		$params = [
+			':p' => $novi_password,
+			':u' => $username
+		];
+
+		$db->update('Korisnik', $query, $params);
+
+	}
+
+	public static function getAll() {
+		$db = Database::getInstance();
+
+		$query = 'SELECT * FROM korisnici';
+
+		return $db->select('Korisnik', $query);
+	}
+
+	public static function obrisi($id) {
+		$db = Database::getInstance();
+		$query = 'DELETE FROM korisnici WHERE id = :id';
+		$params = [':id' => $id];
+
+		$db->delete($query, $params);
+	}
+
+	public static function getByName($username) {
+		$db = Database::getInstance();
+
+		$query = 'SELECT * FROM korisnici WHERE username = :u';
+
+		$params = [
+			':u' => $username
+		];
+
+		$korisnici = $db->select('Korisnik', $query, $params);
+
+		foreach ($korisnici as $korisnik) {
+			return $korisnik;
+		}
+		return null;
+	}
+
 }
