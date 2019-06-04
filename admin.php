@@ -1,11 +1,11 @@
 <?php
-// session_start();
-// if(!isset($_SESSION['korisnik_admin_id'])) {
-//     header('Location: index.php');
-//     die();
-// }
+session_start();
+if(!isset($_SESSION['korisnik_admin_id'])) {
+    header('Location: index.php');
+    die();
+}
 require_once __DIR__ . '/tabele/Korisnik.php';
-$korisnik = Korisnik::getByName('username');
+$korisnik = Korisnik::getById($_SESSION['korisnik_admin_id'],'korisnici','Korisnik');
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -15,9 +15,10 @@ $korisnik = Korisnik::login($username, $password);
 $uloga = Uloga::getByName('administrator');
 
 if ($korisnik !== null) {
+	
 	if($korisnik->uloga_id === $uloga->id && isset($_POST['admin_login'])) {
 		session_start();
-		$_SESSION['korisnik_admin_id'] = $korisnik_id;
+		$_SESSION['korisnik_admin_id'] = $korisnik->id;
 		header('Location: ../admin.php');
 	} else {
 		session_start();
